@@ -25,7 +25,10 @@
 ## Default is: 0 => generic
 ## Good option if your package is for one machine: 42 => native
 if [ -z ${_microarchitecture+x} ]; then
-  _microarchitecture=0
+  _microarchitecture=42
+fi
+if [ -z ${use_pds+x} ]; then
+  use_pds=y
 fi
 
 ## Disable NUMA since most users do not have multiple processors. Breaks CUDA/NvEnc.
@@ -41,7 +44,7 @@ fi
 ## Set variable "use_tracers" to: n to disable (possibly increase performance)
 ##                                y to enable  (stock default)
 if [ -z ${use_tracers+x} ]; then
-  use_tracers=y
+  use_tracers=n
 fi
 
 ## Enable Cachy CPU scheduler by default https://github.com/xanmod/linux/blob/5.8/Documentation/scheduler/sched-Cachy.rst
@@ -55,7 +58,7 @@ fi
 ## Set variable "use_ns" to: n to disable (stock Xanmod)
 ##                           y to enable (stock Archlinux)
 if [ -z ${use_ns+x} ]; then
-  use_ns=n
+  use_ns=y
 fi
 
 # Compile ONLY used modules to VASTLYreduce the number of modules built
